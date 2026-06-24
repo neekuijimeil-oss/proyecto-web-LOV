@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="siteTitle">LaOtraVereda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" id="navLogo">LaOtraVereda</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" class="nav-link active" data-page="comunidad">Comunidad</a></li>
+                <li><a href="#" class="nav-link" data-page="spots">Spots</a></li>
+                <li><a href="#" class="nav-link" data-page="nosotros">Nosotros</a></li>
+                <li><a href="#" class="nav-link" data-page="contacto">Contacto</a></li>
+                <li><a href="#" class="nav-link" data-page="media">Media</a></li>
+                <li><a href="#" class="nav-link settings-trigger" data-page="ajustes"><i class="fas fa-cog"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main id="mainContent">
+
+        <!-- ===== COMUNIDAD (default) ===== -->
+        <section id="page-comunidad" class="page page-active">
+            <div class="container page-content">
+                <div class="forum-header">
+                    <h2 class="section-title" id="comunidadTitle">Comunidad LOV</h2>
+                    <p class="section-desc" id="comunidadDesc">Comparte, vota y comenta. Este es tu foro.</p>
+                </div>
+
+                <div class="post-form">
+                    <div class="post-form-header">
+                        <img src="https://ui-avatars.com/api/?name=U&background=ffdb00&color=000&size=36" alt="Avatar" class="avatar">
+                        <input type="text" id="postTitle" class="post-input inline" placeholder="Título de tu publicación..." maxlength="120">
+                    </div>
+                    <textarea id="postContent" class="post-textarea" placeholder="¿Qué quieres compartir? (opcional)" rows="2"></textarea>
+                    <div class="post-form-actions">
+                        <div class="post-form-left">
+                            <select id="postCategory" class="post-category">
+                                <option value="Historias de Resiliencia">Historias de Resiliencia</option>
+                                <option value="Apoyo Comunitario">Apoyo Comunitario</option>
+                                <option value="Puntos de Interés">Puntos de Interés</option>
+                                <option value="General">General</option>
+                            </select>
+                        </div>
+                        <button id="postBtn" class="btn btn-primary btn-sm">Publicar</button>
+                    </div>
+                </div>
+
+                <div class="feed-filters">
+                    <button class="filter-btn active" data-filter="nuevos">Nuevos</button>
+                    <button class="filter-btn" data-filter="top">Top</button>
+                    <span class="post-count" id="postCount"></span>
+                </div>
+
+                <div id="postsFeed" class="posts-feed"></div>
+            </div>
+        </section>
+
+        <!-- ===== SPOTS (TravelAdvisor style) ===== -->
+        <section id="page-spots" class="page">
+            <div class="container page-content">
+                <div class="forum-header">
+                    <h2 class="section-title" id="spotsTitle">LaOtraVereda Spots</h2>
+                    <p class="section-desc" id="spotsDesc">Descubre y reseña lugares alternativos.</p>
+                </div>
+
+                <div class="spots-form">
+                    <div class="spots-form-row">
+                        <input type="text" id="spotName" class="post-input" placeholder="Nombre del lugar">
+                        <input type="text" id="spotLocation" class="post-input" placeholder="Ubicación">
+                    </div>
+                    <input type="text" id="spotImage" class="post-input" placeholder="URL de imagen (opcional)">
+                    <textarea id="spotDesc" class="post-textarea" placeholder="Describe el lugar..." rows="2"></textarea>
+                    <div class="spots-form-row">
+                        <select id="spotCategory" class="post-category">
+                            <option value="Picada">Picada</option>
+                            <option value="Cultural">Cultural</option>
+                            <option value="Naturaleza">Naturaleza</option>
+                            <option value="Urbano">Urbano</option>
+                            <option value="Gastronómico">Gastronómico</option>
+                        </select>
+                        <div class="star-rating-input" id="spotRatingInput">
+                            <span class="star-label">Tu rating:</span>
+                            <span class="stars">
+                                <i class="fas fa-star" data-rating="1"></i>
+                                <i class="fas fa-star" data-rating="2"></i>
+                                <i class="fas fa-star" data-rating="3"></i>
+                                <i class="fas fa-star" data-rating="4"></i>
+                                <i class="fas fa-star" data-rating="5"></i>
+                            </span>
+                            <span class="star-value" id="spotRatingValue">0</span>
+                        </div>
+                        <button id="spotBtn" class="btn btn-primary btn-sm">Agregar Spot</button>
+                    </div>
+                </div>
+
+                <div class="spots-grid-header">
+                    <span id="spotsCount"></span>
+                    <select id="spotsSort" class="post-category">
+                        <option value="nuevos">Más recientes</option>
+                        <option value="rating">Mejor rating</option>
+                    </select>
+                </div>
+
+                <div id="spotsGrid" class="spots-grid"></div>
+            </div>
+        </section>
+
+        <!-- ===== NOSOTROS ===== -->
+        <section id="page-nosotros" class="page">
+            <div class="container page-content">
+                <div class="forum-header">
+                    <h2 class="section-title" id="nosotrosTitle">Nosotros</h2>
+                    <p class="section-desc" id="nosotrosDesc">Somos una comunidad alternativa que busca dar visibilidad a las historias, lugares y personas que normalmente no se ven.</p>
+                </div>
+                <div class="cards-grid">
+                    <div class="card">
+                        <i class="fas fa-eye card-icon"></i>
+                        <h3>Misión</h3>
+                        <p id="misionText">Dar visibilidad a contenido alternativo y crear una comunidad auténtica donde todos puedan compartir su perspectiva.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-bullseye card-icon"></i>
+                        <h3>Visión</h3>
+                        <p id="visionText">Ser la plataforma de referencia para contenido alternativo en habla hispana, conectando personas a través de ideas y lugares.</p>
+                    </div>
+                    <div class="card">
+                        <i class="fas fa-heart card-icon"></i>
+                        <h3>Valores</h3>
+                        <p id="valoresText">Libertad de expresión, respeto, autenticidad y comunidad.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CONTACTO ===== -->
+        <section id="page-contacto" class="page">
+            <div class="container page-content">
+                <div class="forum-header">
+                    <h2 class="section-title" id="contactoTitle">Contacto</h2>
+                    <p class="section-desc" id="contactoDesc">Escríbenos y te responderemos a la brevedad.</p>
+                </div>
+                <div class="contact-wrapper">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="contactName" class="form-input" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contactEmail" class="form-input" placeholder="Correo electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="contactSubject" class="form-input">
+                                <option value="">Selecciona un asunto</option>
+                                <option value="Sugerencia">Sugerencia</option>
+                                <option value="Reporte">Reporte</option>
+                                <option value="Colaboración">Colaboración</option>
+                                <option value="Otro">Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contactMessage" class="form-input form-textarea" placeholder="Tu mensaje..." rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Enviar Mensaje</button>
+                    </form>
+                    <div class="contact-info">
+                        <div class="contact-item"><i class="fas fa-envelope"></i><span id="contactEmailText">hola@laotravereda.com</span></div>
+                        <div class="contact-item"><i class="fas fa-map-marker-alt"></i><span id="contactLocationText">Desde cualquier vereda del mundo</span></div>
+                        <div class="contact-item"><i class="fas fa-globe"></i><span id="contactSocialText">@laotravereda</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== MEDIA ===== -->
+        <section id="page-media" class="page">
+            <div class="container page-content">
+                <div class="forum-header">
+                    <h2 class="section-title" id="mediaTitle">Media</h2>
+                    <p class="section-desc" id="mediaDesc">Seguinos en nuestras redes y disfrutá de todo el contenido.</p>
+                </div>
+                <div class="media-grid" id="mediaGrid">
+                    <div class="media-card">
+                        <div class="media-icon"><i class="fab fa-youtube"></i></div>
+                        <h3>YouTube</h3>
+                        <p>Entrevistas completas, documentales y contenido en profundidad.</p>
+                        <a href="#" id="mediaYoutubeLink" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Visitar Canal</a>
+                    </div>
+                    <div class="media-card">
+                        <div class="media-icon"><i class="fab fa-instagram"></i></div>
+                        <h3>Instagram</h3>
+                        <p>Extractos diarios, historias y contenido visual de la calle.</p>
+                        <a href="#" id="mediaInstagramLink" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Seguir en Instagram</a>
+                    </div>
+                    <div class="media-card">
+                        <div class="media-icon"><i class="fab fa-tiktok"></i></div>
+                        <h3>TikTok</h3>
+                        <p>Videos cortos, tendencias y el día a día en la vereda.</p>
+                        <a href="#" id="mediaTiktokLink" class="btn btn-primary btn-sm" target="_blank" rel="noopener">Seguir en TikTok</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== AJUSTES ===== -->
+        <section id="page-ajustes" class="page">
+            <div class="container page-content">
+                <div class="forum-header">
+                    <h2 class="section-title">Ajustes Visuales</h2>
+                    <p class="section-desc">Personaliza colores, textos e imágenes. Los cambios se guardan solos.</p>
+                </div>
+
+                <div class="settings-grid">
+                    <div class="settings-group">
+                        <h3><i class="fas fa-palette"></i> Colores</h3>
+                        <div class="setting-row"><label>Color primario (naranjo)</label><input type="color" id="cfgPrimaryColor"></div>
+                        <div class="setting-row"><label>Color amarillo</label><input type="color" id="cfgYellowColor"></div>
+                        <div class="setting-row"><label>Color de fondo</label><input type="color" id="cfgBgColor"></div>
+                        <div class="setting-row"><label>Color tarjetas</label><input type="color" id="cfgCardColor"></div>
+                        <div class="setting-row"><label>Color texto</label><input type="color" id="cfgTextColor"></div>
+                        <div class="setting-row"><label>Color navbar</label><input type="color" id="cfgNavColor"></div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3><i class="fas fa-font"></i> Textos</h3>
+                        <div class="setting-row"><label>Nombre del sitio</label><input type="text" id="cfgSiteName" class="form-input"></div>
+                        <div class="setting-row"><label>Comunidad - Título</label><input type="text" id="cfgComunidadTitle" class="form-input"></div>
+                        <div class="setting-row"><label>Comunidad - Descripción</label><input type="text" id="cfgComunidadDesc" class="form-input"></div>
+                        <div class="setting-row"><label>Spots - Título</label><input type="text" id="cfgSpotsTitle" class="form-input"></div>
+                        <div class="setting-row"><label>Spots - Descripción</label><input type="text" id="cfgSpotsDesc" class="form-input"></div>
+                        <div class="setting-row"><label>Nosotros - Título</label><input type="text" id="cfgNosotrosTitle" class="form-input"></div>
+                        <div class="setting-row"><label>Nosotros - Descripción</label><textarea id="cfgNosotrosDesc" class="form-input" rows="2"></textarea></div>
+                        <div class="setting-row"><label>Contacto - Título</label><input type="text" id="cfgContactoTitle" class="form-input"></div>
+                        <div class="setting-row"><label>Contacto - Descripción</label><input type="text" id="cfgContactoDesc" class="form-input"></div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3><i class="fas fa-image"></i> Imágenes / Logo</h3>
+                        <div class="setting-row"><label>Logo URL (opcional, vacío = texto)</label><input type="text" id="cfgLogoUrl" class="form-input" placeholder="https://..."></div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3><i class="fas fa-share-alt"></i> Redes Sociales</h3>
+                        <div class="setting-row"><label>Media - Título</label><input type="text" id="cfgMediaTitle" class="form-input"></div>
+                        <div class="setting-row"><label>Media - Descripción</label><input type="text" id="cfgMediaDesc" class="form-input"></div>
+                        <div class="setting-row"><label>YouTube URL</label><input type="text" id="cfgYoutubeUrl" class="form-input" placeholder="https://youtube.com/..."></div>
+                        <div class="setting-row"><label>Instagram URL</label><input type="text" id="cfgInstagramUrl" class="form-input" placeholder="https://instagram.com/..."></div>
+                        <div class="setting-row"><label>TikTok URL</label><input type="text" id="cfgTiktokUrl" class="form-input" placeholder="https://tiktok.com/..."></div>
+                    </div>
+
+                    <div class="settings-group">
+                        <h3><i class="fas fa-undo-alt"></i> General</h3>
+                        <p style="color:var(--text-muted);font-size:.875rem;margin-bottom:16px;">Restablece o respalda tu configuración.</p>
+                        <button id="resetSettingsBtn" class="btn btn-primary btn-sm">Restablecer valores</button>
+                        <button id="exportSettingsBtn" class="btn btn-secondary btn-sm" style="margin-top:8px;">Exportar configuración</button>
+                        <button id="importSettingsBtn" class="btn btn-secondary btn-sm" style="margin-top:8px;">Importar configuración</button>
+                        <input type="file" id="importSettingsFile" accept=".json" style="display:none;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container">
+            <p id="footerText">&copy; 2026 LaOtraVereda</p>
+            <div class="footer-links">
+                <a href="#" data-page="comunidad">Comunidad</a>
+                <a href="#" data-page="spots">Spots</a>
+                <a href="#" data-page="nosotros">Nosotros</a>
+                <a href="#" data-page="contacto">Contacto</a>
+                <a href="#" data-page="media">Media</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast"></div>
+    <script src="js/app.js"></script>
+</body>
+</html>
